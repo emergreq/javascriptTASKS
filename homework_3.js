@@ -11,7 +11,7 @@ function calculateGrade(students) {
     const avg = sum / person.scores.length;
     const avg_rounded = Math.round(avg * 100) / 100;
     person.average = avg_rounded;
-    
+
     if (person.average >= 90) {
       person.grade = "A";
     } else if (person.average >= 80) {
@@ -26,19 +26,23 @@ function calculateGrade(students) {
   return students;
 }
 
-
-
 //     ---задача 2--- (фильтр)
 
 function filterProducts(products, filters) {
-    let result = [];
+  let result = [];
 
-    for (const object of products) {
-        if ((object.price <= products.maxPrice) and (object.category == products.category)){
-            result.push(object);
-        }
+  for (const object of products) {
+    if (
+      object.price <= filters.maxPrice &&
+      object.category == filters.category
+    ) {
+      result.push(object);
     }
-    
-    return result;
-}
+  }
 
+  if (filters.maxPrice || filters.category) {
+    return result;
+  } else {
+    return products;
+  }
+}
